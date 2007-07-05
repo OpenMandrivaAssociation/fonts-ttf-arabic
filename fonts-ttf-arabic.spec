@@ -1,7 +1,7 @@
 Summary:	Free Arabic TrueType fonts
 Name:		fonts-ttf-arabic
 Version:	1.1
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	GPL
 Group:		System/Fonts/True type
 
@@ -11,8 +11,6 @@ Source1:	nastaliq_unicode.ttf.bz2
 BuildArch:	noarch
 BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:	freetype-tools
-Requires(post):		chkfontpath
-Requires(postun):	chkfontpath
 Requires(post): fontconfig
 Requires(postun): fontconfig
 
@@ -41,16 +39,17 @@ cp fonts.scale fonts.dir
 %endif
 )
 
+mkdir -p %{buildroot}%_sysconfdir/X11/fontpath.d/
+ln -s ../../..%_datadir/fonts/TTF/arabic \
+    %{buildroot}%_sysconfdir/X11/fontpath.d/ttf-arabic:pri=50
+
 %post
-[ -x %_sbindir/chkfontpath ] && %_sbindir/chkfontpath -q -a %_datadir/fonts/TTF/arabic
 touch %{_datadir}/fonts/TTF
 [ -x %_bindir/fc-cache ] && %{_bindir}/fc-cache 
 
 %postun
 # 0 means a real uninstall
 if [ "$1" = "0" ]; then
-   [ -x %_sbindir/chkfontpath ] && \
-   %_sbindir/chkfontpath -q -r %_datadir/fonts/TTF/arabic
    [ -x %_bindir/fc-cache ] && %{_bindir}/fc-cache 
 fi
 
@@ -60,10 +59,7 @@ rm -fr %buildroot
 %files
 %defattr(0644,root,root,0755)
 %doc *txt
-#
-%dir %_datadir/fonts/TTF/
 %dir %_datadir/fonts/TTF/arabic/
 %_datadir/fonts/TTF/arabic/*
-
-
+%_sysconfdir/X11/fontpath.d/ttf-arabic:pri=50
 
