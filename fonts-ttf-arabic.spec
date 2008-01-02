@@ -9,6 +9,7 @@ Source0:	http://www.linux.org.sa/download/KacstArabicFonts-%{version}.tar.bz2
 Source1:	nastaliq_unicode.ttf.bz2
 
 BuildArch:	noarch
+BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:	freetype-tools
 Requires(post): fontconfig
 Requires(postun): fontconfig
