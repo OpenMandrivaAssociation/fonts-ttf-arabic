@@ -1,7 +1,7 @@
 Summary:	Free Arabic TrueType fonts
 Name:		fonts-ttf-arabic
 Version:	1.1
-Release:	%mkrel 6
+Release:	%mkrel 7
 License:	GPL
 Group:		System/Fonts/True type
 
