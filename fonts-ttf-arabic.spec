@@ -1,7 +1,7 @@
 Summary:	Arabic TrueType fonts
 Name:		fonts-ttf-arabic
 Version:	1.1
-Release:	%mkrel 10
+Release:	%mkrel 11
 License:	GPL
 Group:		System/Fonts/True type
 
@@ -11,8 +11,6 @@ Source1:	nastaliq_unicode.ttf.bz2
 BuildArch:	noarch
 BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:	freetype-tools
-Requires(post): fontconfig
-Requires(postun): fontconfig
 
 %description
 This Package provides Free Arabic TrueType fonts.
@@ -45,13 +43,6 @@ ln -s ../../..%_datadir/fonts/TTF/arabic \
 
 %post
 touch %{_datadir}/fonts/TTF
-[ -x %_bindir/fc-cache ] && %{_bindir}/fc-cache 
-
-%postun
-# 0 means a real uninstall
-if [ "$1" = "0" ]; then
-   [ -x %_bindir/fc-cache ] && %{_bindir}/fc-cache 
-fi
 
 %clean
 rm -fr %buildroot
