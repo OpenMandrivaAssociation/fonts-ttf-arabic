@@ -10,7 +10,7 @@ Source1:	nastaliq_unicode.ttf.bz2
 
 BuildArch:	noarch
 BuildRoot:	%_tmppath/%name-%version-%release-root
-BuildRequires:	freetype-tools
+BuildRequires:	mkfontscale
 
 %description
 This Package provides Free Arabic TrueType fonts.
@@ -30,11 +30,8 @@ cp *.ttf %buildroot/%_datadir/fonts/TTF/arabic/
 
 (
 cd %buildroot/%_datadir/fonts/TTF/arabic/
-%_sbindir/ttmkfdir -u > fonts.scale
+mkfontscale
 cp fonts.scale fonts.dir
-%if %mdkversion < 20070
-%_bindir/fc-cache . || touch fonts.cache-1
-%endif
 )
 
 mkdir -p %{buildroot}%_sysconfdir/X11/fontpath.d/
