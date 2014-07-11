@@ -1,7 +1,7 @@
 Summary:	Arabic TrueType fonts
 Name:		fonts-ttf-arabic
 Version:	1.1
-Release:	23
+Release:	24
 License:	GPLv2
 Group:		System/Fonts/True type
 Source0:	http://www.linux.org.sa/download/KacstArabicFonts-%{version}.tar.bz2
